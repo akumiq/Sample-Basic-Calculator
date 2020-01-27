@@ -116,6 +116,25 @@ class _HomePageState extends State<HomePage> {
         }
       });
 
+  void deleteValue() => setState(() {
+        String strValue = sbValue.toString();
+
+        if (strValue.length > 0) {
+          String lastCharacter = strValue.substring(strValue.length - 1);
+
+          if (lastCharacter == "/" ||
+              lastCharacter == "x" ||
+              lastCharacter == "-" ||
+              lastCharacter == "+") {
+            operation = "";
+          }
+
+          strValue = strValue.substring(0, strValue.length - 1);
+          sbValue.clear();
+          sbValue.write(strValue.length == 0 ? "0" : strValue);
+        }
+      });
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -183,7 +202,9 @@ class _HomePageState extends State<HomePage> {
                               Icons.backspace,
                               color: _buttonColorGrey,
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              deleteValue();
+                            },
                           ),
                         ),
                         Expanded(
