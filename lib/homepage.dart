@@ -135,6 +135,12 @@ class _HomePageState extends State<HomePage> {
         }
       });
 
+  void clearValue() => setState(() {
+        operation = "";
+        sbValue.clear();
+        sbValue.write("0");
+      });
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -190,7 +196,9 @@ class _HomePageState extends State<HomePage> {
                                   color: _primarySwatchColor,
                                   fontSize: _buttonFontSize),
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              clearValue();
+                            },
                           ),
                         ),
                         Expanded(
